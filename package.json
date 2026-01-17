@@ -1,0 +1,33 @@
+{
+  "name": "study-buddy",
+  "version": "1.0.0",
+  "description": "A web-based study companion designed to help students stay focused, organized, and motivated.",
+  "keywords": [
+    "study-helper",
+    "study-companion"
+  ],
+  "homepage": "https://github.com/StudyBudddy/study-buddy#readme",
+  "bugs": {
+    "url": "https://github.com/StudyBudddy/study-buddy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StudyBudddy/study-buddy.git"
+  },
+  "license": "MIT",
+  "author": "Team Study Buddy",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
