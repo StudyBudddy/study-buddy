@@ -4,8 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Study Buddy</title>
+    <script src="router.js" type="module"></script>
+    <script src="index.js" type="module"></script>
   </head>
   <body>
-    Hello from Study Buddy!
+    <aside>
+      <nav>
+        <div><a href="/" data-link>Dashboard</a></div>
+        <div><a href="/todo" data-link>Todo List</a></div>
+        <div><a href="/ai-chat" data-link>AI Chat</a></div>
+        <div><a href="/timer" data-link>Study Timer</a></div>
+        <div><a href="/lofi-music" data-link>Lofi Music</a></div>
+      </nav>
+    </aside>
+    <section id="view"></section>
   </body>
 </html>
