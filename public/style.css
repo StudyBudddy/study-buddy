@@ -1,0 +1,67 @@
+:root {
+  /* 
+  These varaiables can be used as follows
+  background-color: var(--primary-color);
+
+  Color Palette. 
+  */
+
+  --primary-color: #2656e3; /* For elements that needs highlighting */
+  --secondary-color: #a29bfe; /* For elements that needs highlighting */
+  --bg-color: #090909; /* Main background colors for large areas */
+  --secondary-bg-color: #1e1e1e; /* Background color for cards & small background areas */
+  --heading-color: #ffffff; /* Color for h1...h6 & texts that needs emphasis */
+  --text-color: #a7aab4; /* Color for long texts like paragraphs */
+
+  /* Spacing & Borders */
+  --padding-md: 20px;
+  --border-radius: 8px;
+
+  /* Typography */
+  --font-primary:
+    Georgia, serif; /* Font for h1...h6 & texts that needs emphasis */
+  --font-text:
+    "Trebuchet MS", Arial, sans-serif; /* Font for long texts like paragraphs */
+}
+
+[data-theme="light"] {
+  --secondary-color: #a29bfe; /* For elements that needs highlighting */
+  --bg-color: #fff; /* Main background colors for large areas */
+  --secondary-bg-color: #fefefe; /* Background color for cards & small background areas */
+  --heading-color: #ffffff; /* Color for h1...h6 & texts that needs emphasis */
+  --text-color: #a7aab4; /* Color for long texts like paragraphs */
+}
+
+/* CSS Reset */
+
+/* *:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+  all: unset;
+  display: revert;
+} */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+textarea {
+  white-space: revert;
+}
+
+/* CSS Reset */
