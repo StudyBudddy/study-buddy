@@ -2,7 +2,7 @@
   /* 
   These varaiables can be used as follows
   background-color: var(--primary-color);
-
+  
   Color Palette. 
   */
 
@@ -54,6 +54,7 @@ ul {
 
 img {
   max-width: 100%;
+  height: auto;
 }
 
 table {
@@ -65,3 +66,21 @@ textarea {
 }
 
 /* CSS Reset */
+
+/* Sibebar & view container styling */
+
+main {
+  display: flex;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  height: 100vh;
+}
+
+aside {
+  width: 15%;
+}
+
+#view {
+  background-color: var(--secondary-bg-color);
+  width: 85%;
+}

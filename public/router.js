@@ -1,30 +1,33 @@
-import dashboard from "./views/dashboard.js";
-import chat from "./views/chat.js";
-import todo from "./views/todo.js";
-import music from "./views/music.js";
-import timer from "./views/timer.js";
+import dashboard, { dashboardInit } from "./views/dashboard.js";
+import todo, { todoInit } from "./views/todo.js";
+import chat, { chatInit } from "./views/chat.js";
+import timer, { timerInit } from "./views/timer.js";
 
 const routes = {
-  "/": { title: "Dashboard", view: dashboard },
-  "/todo": { title: "Todo List", view: todo },
-  "/ai-chat": { title: "AI Chat", view: chat },
-  "/lofi-music": { title: "Lofi Music", view: music },
-  "/timer": { title: "Study Timer", view: timer },
-};
-
-const navigateTo = (url) => {
-  history.pushState(null, null, url);
-  router();
+  "/": { title: "Dashboard", render: dashboard, init: dashboardInit },
+  "/todo": { title: "Todo List", render: todo, init: todoInit },
+  "/ai-chat": { title: "AI Chat", render: chat, init: chatInit },
+  "/timer": { title: "Study Timer", render: timer, init: timerInit },
 };
 
 const router = async () => {
   const path = window.location.pathname;
   const route = routes[path] || routes["/"];
 
-  document.getElementById("view").innerHTML = route.view();
+  document.getElementById("view").innerHTML = route.render();
+
   document.title = route.title;
 
+  if (route.init) {
+    route.init();
+  }
+
   window.dispatchEvent(new CustomEvent("viewChange", { detail: { path } }));
+};
+
+const navigateTo = (url) => {
+  history.pushState(null, null, url);
+  router();
 };
 
 window.addEventListener("popstate", router);
@@ -36,6 +39,5 @@ document.addEventListener("DOMContentLoaded", () => {
       navigateTo(e.target.href);
     }
   });
-
   router();
 });
