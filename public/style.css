@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 :root {
   /* 
   These varaiables can be used as follows
@@ -6,10 +8,10 @@
   Color Palette. 
   */
 
-  --primary-color: #2656e3; /* For elements that needs highlighting */
+  --primary-color: #dcf763; /* For elements that needs highlighting */
   --secondary-color: #a29bfe; /* For elements that needs highlighting */
-  --bg-color: #090909; /* Main background colors for large areas */
-  --secondary-bg-color: #1e1e1e; /* Background color for cards & small background areas */
+  --bg-color: #161616; /* Main background colors for large areas */
+  --secondary-bg-color: #282828; /* Background color for cards & small background areas */
   --heading-color: #ffffff; /* Color for h1...h6 & texts that needs emphasis */
   --text-color: #a7aab4; /* Color for long texts like paragraphs */
 
@@ -18,8 +20,7 @@
   --border-radius: 8px;
 
   /* Typography */
-  --font-primary:
-    Georgia, serif; /* Font for h1...h6 & texts that needs emphasis */
+  --font-primary: "Poppins"; /* Font for h1...h6 & texts that needs emphasis */
   --font-text:
     "Trebuchet MS", Arial, sans-serif; /* Font for long texts like paragraphs */
 }
@@ -73,14 +74,24 @@ main {
   display: flex;
   background-color: var(--bg-color);
   color: var(--text-color);
+  font-family: var(--font-primary);
   height: 100vh;
 }
 
 aside {
   width: 15%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+nav div {
 }
 
 #view {
   background-color: var(--secondary-bg-color);
   width: 85%;
+  margin: 30px;
+  border-radius: 20px;
 }
