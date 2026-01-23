@@ -76,22 +76,72 @@ main {
   color: var(--text-color);
   font-family: var(--font-primary);
   height: 100vh;
+  font-size: 15px;
 }
 
 aside {
-  width: 15%;
-  padding: 30px;
+  width: 16%;
+  padding: 30px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 nav div {
+  padding: 15px 20px;
+}
+
+.nav-item svg {
+  color: var(--heading-color);
+}
+
+.account-btn {
+  padding: 15px 20px;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--heading-color);
+  margin-left: 5px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.nav-item .ai {
+  background-color: #dcf763;
+  color: #161616;
+  font-size: 13px;
+  padding: 2px 10px;
+  height: 22x;
+  border-radius: 4px;
+  margin-left: 15px;
+}
+
+.account-btn {
+  display: flex;
+  background-color: var(--secondary-bg-color);
+  border-radius: 15px;
+}
+
+.account-btn img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.account-btn .email {
+  font-size: 12px;
 }
 
 #view {
   background-color: var(--secondary-bg-color);
-  width: 85%;
-  margin: 30px;
+  width: 84%;
+  margin: 30px 30px 30px 0;
   border-radius: 20px;
 }
