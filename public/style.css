@@ -28,8 +28,8 @@
 [data-theme="light"] {
   --secondary-color: #a29bfe; /* For elements that needs highlighting */
   --bg-color: #fff; /* Main background colors for large areas */
-  --secondary-bg-color: #fefefe; /* Background color for cards & small background areas */
-  --heading-color: #ffffff; /* Color for h1...h6 & texts that needs emphasis */
+  --secondary-bg-color: #b29e9e; /* Background color for cards & small background areas */
+  --heading-color: #222; /* Color for h1...h6 & texts that needs emphasis */
   --text-color: #a7aab4; /* Color for long texts like paragraphs */
 }
 
@@ -87,23 +87,25 @@ aside {
   justify-content: space-between;
 }
 
+nav .logo {
+  height: 90px;
+  width: auto;
+  margin: 0 0 20px 20px;
+}
+
 nav div {
   padding: 15px 20px;
 }
 
 .nav-item svg {
   color: var(--heading-color);
-}
-
-.account-btn {
-  padding: 15px 20px;
+  margin-right: 5px;
 }
 
 nav a {
   text-decoration: none;
   font-weight: 500;
   color: var(--heading-color);
-  margin-left: 5px;
 }
 
 .nav-item {
@@ -122,21 +124,73 @@ nav a {
   margin-left: 15px;
 }
 
+.actions {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
 .account-btn {
   display: flex;
+  align-items: center;
   background-color: var(--secondary-bg-color);
   border-radius: 15px;
+  padding: 10px;
+  flex: 1;
 }
 
 .account-btn img {
   width: 40px;
   height: 40px;
   margin-right: 10px;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 .account-btn .email {
   font-size: 12px;
+  opacity: 0.7;
+}
+
+.mode-toggle {
+  width: 32px;
+  background-color: var(--secondary-bg-color);
+  border-radius: 18px;
+  position: relative;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 0;
+}
+
+.mode-toggle .icon {
+  font-size: 10px;
+  z-index: 2;
+  color: var(--bg-color);
+}
+
+.toggle-thumb {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  left: 50%;
+  top: 7px;
+  transform: translateX(-50%);
+  transition: transform 0.3s ease;
+}
+
+[data-theme="light"] .toggle-thumb {
+  transform: translateX(-50%) translateY(25px);
+}
+
+.sun {
+  position: relative;
+  top: 4px;
 }
 
 #view {
