@@ -1,0 +1,201 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  /* 
+  These varaiables can be used as follows
+  background-color: var(--primary-color);
+  
+  Color Palette. 
+  */
+
+  --primary-color: #dcf763; /* For elements that needs highlighting */
+  --secondary-color: #a29bfe; /* For elements that needs highlighting */
+  --bg-color: #161616; /* Main background colors for large areas */
+  --secondary-bg-color: #282828; /* Background color for cards & small background areas */
+  --heading-color: #ffffff; /* Color for h1...h6 & texts that needs emphasis */
+  --text-color: #a7aab4; /* Color for long texts like paragraphs */
+
+  /* Spacing & Borders */
+  --padding-md: 20px;
+  --border-radius: 8px;
+
+  /* Typography */
+  --font-primary: "Poppins"; /* Font for h1...h6 & texts that needs emphasis */
+  --font-text:
+    "Trebuchet MS", Arial, sans-serif; /* Font for long texts like paragraphs */
+}
+
+[data-theme="light"] {
+  --secondary-color: #a29bfe; /* For elements that needs highlighting */
+  --bg-color: #fff; /* Main background colors for large areas */
+  --secondary-bg-color: #b29e9e; /* Background color for cards & small background areas */
+  --heading-color: #222; /* Color for h1...h6 & texts that needs emphasis */
+  --text-color: #a7aab4; /* Color for long texts like paragraphs */
+}
+
+/* CSS Reset */
+
+/* *:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+  all: unset;
+  display: revert;
+} */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+textarea {
+  white-space: revert;
+}
+
+/* CSS Reset */
+
+/* Sibebar & view container styling */
+
+main {
+  display: flex;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-primary);
+  height: 100vh;
+  font-size: 15px;
+}
+
+aside {
+  width: 16%;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+nav .logo {
+  height: 90px;
+  width: auto;
+  margin: 0 0 20px 20px;
+}
+
+nav div {
+  padding: 15px 20px;
+}
+
+.nav-item svg {
+  color: var(--heading-color);
+  margin-right: 5px;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--heading-color);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.nav-item .ai {
+  background-color: #dcf763;
+  color: #161616;
+  font-size: 13px;
+  padding: 2px 10px;
+  height: 22x;
+  border-radius: 4px;
+  margin-left: 15px;
+}
+
+.actions {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.account-btn {
+  display: flex;
+  align-items: center;
+  background-color: var(--secondary-bg-color);
+  border-radius: 15px;
+  padding: 10px;
+  flex: 1;
+}
+
+.account-btn img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 8px;
+}
+
+.account-btn .email {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.mode-toggle {
+  width: 32px;
+  background-color: var(--secondary-bg-color);
+  border-radius: 18px;
+  position: relative;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 0;
+}
+
+.mode-toggle .icon {
+  font-size: 10px;
+  z-index: 2;
+  color: var(--bg-color);
+}
+
+.toggle-thumb {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  left: 50%;
+  top: 7px;
+  transform: translateX(-50%);
+  transition: transform 0.3s ease;
+}
+
+[data-theme="light"] .toggle-thumb {
+  transform: translateX(-50%) translateY(25px);
+}
+
+.sun {
+  position: relative;
+  top: 4px;
+}
+
+#view {
+  background-color: var(--secondary-bg-color);
+  width: 84%;
+  margin: 30px 30px 30px 0;
+  border-radius: 20px;
+}

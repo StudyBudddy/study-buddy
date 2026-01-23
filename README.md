@@ -17,6 +17,6 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Tech Stack
 
-- Frontend: HTML, CSS, JavaScript, React
+- Frontend: HTML, CSS, JavaScript
 - Backend: Node.js, Express
 - Database: SQLite
