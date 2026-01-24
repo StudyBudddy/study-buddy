@@ -13,7 +13,7 @@ const routes = {
   "/timer": { title: "Study Timer", render: timer, init: timerInit },
   "/login": { title: "Login", render: login, init: loginInit },
   "/signup": { title: "Signup", render: signup, init: signupInit },
-  "/music": { title: "Music Player", render: music, init: musicInit },
+  "/lofi-music": { title: "Music Player", render: music, init: musicInit },
 };
 
 const router = async () => {
