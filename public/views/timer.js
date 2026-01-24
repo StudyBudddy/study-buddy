@@ -1,7 +1,8 @@
 export function timerInit() {
   const style = document.createElement("style");
   style.textContent = `
-.timer-container {
+
+  .timer-container {
   display: grid;
   grid-template-columns: 1fr 1fr;   /* two columns */
   gap: 3rem;
