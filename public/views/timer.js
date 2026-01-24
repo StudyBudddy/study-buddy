@@ -35,6 +35,7 @@ h1,h3 {
 }
 
 .timer {
+  font: var(--font--text);
   font-size: 3.5rem;
   margin: 0.5rem 0;
   color: var(--text-color);
