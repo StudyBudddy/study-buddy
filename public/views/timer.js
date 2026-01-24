@@ -1,9 +1,6 @@
-// views/timer.js
-// Pomodoro Timer + Break Timer with tomato + leaf sway + pulsing clock
-
-/* ---------------- CSS ---------------- */
-const style = document.createElement("style");
-style.textContent = `
+export function timerInit() {
+  const style = document.createElement("style");
+  style.textContent = `
 .timer-container {
   display: grid;
   grid-template-columns: 1fr 1fr;   /* two columns */
@@ -193,23 +190,149 @@ h1,h3 {
 }
 
 `;
-document.head.appendChild(style);
+  document.head.appendChild(style);
 
-/* ---------------- Defining Variables---------------- */
-let workMinutes = 25;
-let shortBreakMinutes = 5;
-let longBreakMinutes = 15;
+  /* ---------------- Defining Variables---------------- */
+  let workMinutes = 25;
+  let shortBreakMinutes = 5;
+  let longBreakMinutes = 15;
 
-let workSeconds = workMinutes * 60;
-let breakSeconds = longBreakMinutes * 60;
+  let workSeconds = workMinutes * 60;
+  let breakSeconds = longBreakMinutes * 60;
 
-let workInterval = null;
-let breakInterval = null;
+  let workInterval = null;
+  let breakInterval = null;
+  const workTimer = document.getElementById("workTimer");
+  const breakTimer = document.getElementById("breakTimer");
+  const workAnim = document.getElementById("workAnim");
+  const breakAnim = document.getElementById("breakAnim");
 
-/* ---------------- HTML ---------------- */
+  update(workTimer, workSeconds);
+  update(breakTimer, breakSeconds);
+
+  /* ---- Buttons (Set Time Only) ---- */
+
+  document.getElementById("applyWork").onclick = () => {
+    workMinutes = +document.getElementById("workInput").value;
+    workSeconds = workMinutes * 60;
+    update(workTimer, workSeconds);
+    workAnim.classList.add("visible");
+  };
+
+  document.getElementById("applyShort").onclick = () => {
+    shortBreakMinutes = +document.getElementById("shortInput").value;
+    breakSeconds = shortBreakMinutes * 60;
+    update(breakTimer, breakSeconds);
+    breakAnim.classList.add("visible");
+  };
+
+  document.getElementById("applyLong").onclick = () => {
+    longBreakMinutes = +document.getElementById("longInput").value;
+    breakSeconds = longBreakMinutes * 60;
+    update(breakTimer, breakSeconds);
+    breakAnim.classList.add("visible");
+  };
+
+  document.querySelectorAll(".controls").forEach((controlGroup) => {
+    const buttons = controlGroup.querySelectorAll("button");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        // remove active from all buttons
+        buttons.forEach((btn) => btn.classList.remove("active"));
+
+        // add active to the clicked button
+        button.classList.add("active");
+      });
+    });
+  });
+
+  /* ---- Work Timer ---- */
+  document.getElementById("workStart").onclick = () => {
+    if (workInterval) return;
+    workAnim.classList.add("visible", "active");
+    workInterval = setInterval(() => {
+      workSeconds--;
+      update(workTimer, workSeconds);
+      if (workSeconds <= 0) stopWork();
+    }, 1000);
+  };
+
+  document.getElementById("workPause").onclick = () => {
+    clearInterval(workInterval);
+    workInterval = null;
+    workAnim.classList.remove("active"); // stops pulse & leaf, keeps opacity
+  };
+
+  document.getElementById("workReset").onclick = () => {
+    clearInterval(workInterval);
+    workInterval = null;
+    workSeconds = workMinutes * 60;
+    update(workTimer, workSeconds);
+    workAnim.classList.remove("active", "visible");
+  };
+
+  /* ---- Break Timer ---- */
+
+  document.getElementById("breakStart").onclick = () => {
+    if (breakInterval) return;
+    breakAnim.classList.add("visible", "active");
+    breakInterval = setInterval(() => {
+      breakSeconds--;
+      update(breakTimer, breakSeconds);
+      if (breakSeconds <= 0) stopBreak();
+    }, 1000);
+  };
+
+  document.getElementById("breakPause").onclick = () => {
+    clearInterval(breakInterval);
+    breakInterval = null;
+    breakAnim.classList.remove("active"); // stops pulse & rotation, keeps opacity
+  };
+
+  document.getElementById("breakReset").onclick = () => {
+    clearInterval(breakInterval);
+    breakInterval = null;
+    breakSeconds = longBreakMinutes * 60;
+    update(breakTimer, breakSeconds);
+    breakAnim.classList.remove("active", "visible");
+  };
+
+  /* ---- Timer End ---- */
+
+  function stopWork() {
+    clearInterval(workInterval);
+    workInterval = null;
+    workAnim.classList.remove("active", "visible");
+    notify("Now it's the time to take a break!");
+  }
+
+  function stopBreak() {
+    clearInterval(breakInterval);
+    breakInterval = null;
+    breakAnim.classList.remove("active", "visible");
+    notify("Now it's the time to work!");
+  }
+}
+
+/* ---------------- Notifications ---------------- */
+
+function update(el, seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  el.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+}
+
+function notify(msg) {
+  if ("Notification" in window && Notification.permission === "granted") {
+    new Notification(msg);
+  } else {
+    alert(msg);
+  }
+}
+
 export default function timer() {
-  return `
-  <section class="timer-container">
+  return ` <section class="timer-container">
 
   <div class="timer-set" id="pomodoroSet">
   <h1>Pomodoro Timer</h1>
@@ -258,138 +381,5 @@ export default function timer() {
     <button id="applyLong">Apply Long Break</button>
   </div>
 </div>
-</section>
-`;
-}
-
-/* ---------------- JavaScript ---------------- */
-
-export function timerInit() {
-  const workTimer = document.getElementById("workTimer");
-  const breakTimer = document.getElementById("breakTimer");
-  const workAnim = document.getElementById("workAnim");
-  const breakAnim = document.getElementById("breakAnim");
-
-  update(workTimer, workSeconds);
-  update(breakTimer, breakSeconds);
-
-  /* ---- Buttons (Set Time Only) ---- */
-  
-  document.getElementById("applyWork").onclick = () => {
-    workMinutes = +document.getElementById("workInput").value;
-    workSeconds = workMinutes * 60;
-    update(workTimer, workSeconds);
-    workAnim.classList.add("visible");
-  };
-
-  document.getElementById("applyShort").onclick = () => {
-    shortBreakMinutes = +document.getElementById("shortInput").value;
-    breakSeconds = shortBreakMinutes * 60;
-    update(breakTimer, breakSeconds);
-    breakAnim.classList.add("visible");
-  };
-
-  document.getElementById("applyLong").onclick = () => {
-    longBreakMinutes = +document.getElementById("longInput").value;
-    breakSeconds = longBreakMinutes * 60;
-    update(breakTimer, breakSeconds);
-    breakAnim.classList.add("visible");
-  };
-
-  document.querySelectorAll(".controls").forEach(controlGroup => {
-  const buttons = controlGroup.querySelectorAll("button");
-
-  buttons.forEach(button => {
-    button.addEventListener("click", () => {
-      // remove active from all buttons 
-      buttons.forEach(btn => btn.classList.remove("active"));
-
-      // add active to the clicked button
-      button.classList.add("active");
-    });
-  });
-});
-
-  /* ---- Work Timer ---- */
-  document.getElementById("workStart").onclick = () => {
-    if (workInterval) return;
-    workAnim.classList.add("visible", "active");
-    workInterval = setInterval(() => {
-      workSeconds--;
-      update(workTimer, workSeconds);
-      if (workSeconds <= 0) stopWork();
-    }, 1000);
-  };
-
-  document.getElementById("workPause").onclick = () => {
-    clearInterval(workInterval);
-    workInterval = null;
-    workAnim.classList.remove("active"); // stops pulse & leaf, keeps opacity
-  };
-
-  document.getElementById("workReset").onclick = () => {
-    clearInterval(workInterval);
-    workInterval = null;
-    workSeconds = workMinutes * 60;
-    update(workTimer, workSeconds);
-    workAnim.classList.remove("active", "visible");
-  };
-
-  /* ---- Break Timer ---- */
-  
-  document.getElementById("breakStart").onclick = () => {
-    if (breakInterval) return;
-    breakAnim.classList.add("visible", "active");
-    breakInterval = setInterval(() => {
-      breakSeconds--;
-      update(breakTimer, breakSeconds);
-      if (breakSeconds <= 0) stopBreak();
-    }, 1000);
-  };
-
-  document.getElementById("breakPause").onclick = () => {
-    clearInterval(breakInterval);
-    breakInterval = null;
-    breakAnim.classList.remove("active"); // stops pulse & rotation, keeps opacity
-  };
-
-  document.getElementById("breakReset").onclick = () => {
-    clearInterval(breakInterval);
-    breakInterval = null;
-    breakSeconds = longBreakMinutes * 60;
-    update(breakTimer, breakSeconds);
-    breakAnim.classList.remove("active", "visible");
-  };
-
-  /* ---- Timer End ---- */
-  
-  function stopWork() {
-    clearInterval(workInterval);
-    workInterval = null;
-    workAnim.classList.remove("active", "visible");
-    notify("Now it's the time to take a break!");
-  }
-
-  function stopBreak() {
-    clearInterval(breakInterval);
-    breakInterval = null;
-    breakAnim.classList.remove("active", "visible");
-    notify("Now it's the time to work!");
-  }
-}
-
-/* ---------------- Notifications ---------------- */
-
-function update(el, seconds) {
-  const m = Math.floor(seconds / 60);
-  const s = seconds % 60;
-  el.textContent = `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
-}
-
-function notify(msg) {
-  if ("Notification" in window && Notification.permission === "granted") {
-    new Notification(msg);
-  } else {
-    alert(msg);
-  }
+</section>`;
 }
