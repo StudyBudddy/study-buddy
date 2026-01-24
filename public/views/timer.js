@@ -1,36 +1,87 @@
 // views/timer.js
-// Pomodoro Timer + Break Timer with SVG tomato + leaf sway + pulsing clock
+// Pomodoro Timer + Break Timer with tomato + leaf sway + pulsing clock
 
 /* ---------------- CSS ---------------- */
 const style = document.createElement("style");
 style.textContent = `
 .timer-container {
-  text-align: center;
-  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* two columns */
+  gap: 3rem;
+  justify-content: center;
+  align-items: start;
+  padding: 2rem 4rem;
+  background-color: var(--bg-color);
+}
+
+.timer-set {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* centerd timer content */
+  justify-content: center;
+  gap: 1rem;
+}
+
+h2, h3 {
+  color: var(--heading-color);
+}
+  
+.set-icon {
+  position: fixed;
+  left: 20px;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
 }
 
 .timer {
   font-size: 3.5rem;
   margin: 1rem 0;
+  color: #f5f242
 }
 
 .controls button, .settings button {
-  margin: 0.4rem;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+  margin: 0.2rem ;
   padding: 0.6rem 1rem;
   cursor: pointer;
-}
+  border: 2px solid #f53d37;
+  border-radius: 8px;
+  background-color: #eeafde;
+  cursor: pointer;
+  font-weight: bold;
+  }
+  
+  button:hover {
+    background-color: #8fddf0;
+  }
 
-.settings input {
+  button.active {
+    background-color: #f5f242;
+  }
+
+.settings input { 
   width: 70px;
-}
+  height: 25px;
+  border: 2px solid #da5543;
+  border-radius: 8px;
+  background-color: #fcb7b7;
+  text-align: center;
+  font-weight: bold;
+  }
 
-/* ===== TOMATO SVG ===== */
+  input:hover {
+    background-color: #aff594;
+  }
+
+/* ===== Tomato ===== */
+
 .tomato-svg {
   width: 140px;
   height: 140px;
-  margin: 1rem auto;
+  margin: 0.2rem auto;
   display: block;
-  opacity: 0.4;
+  opacity: 0.6;
   transform-origin: center;
 }
 
@@ -38,7 +89,7 @@ style.textContent = `
   opacity: 1;
 }
 
-/* Pulsing body */
+/* Body Pulsing */
 .tomato-svg.active {
   animation: tomatoPulse 1.6s ease-in-out infinite;
 }
@@ -63,15 +114,16 @@ style.textContent = `
   100% { transform: rotate(0deg); }
 }
 
-/* ===== CLOCK ===== */
+/* ===== Clock ===== */
+
 .clock {
   width: 120px;
   height: 120px;
   border: 6px solid #2196f3;
   border-radius: 50%;
-  margin: 1rem auto;
+  margin: 0.5rem auto;
   position: relative;
-  opacity: 0.4;
+  opacity: 0.6;
   transform-origin: center;
 }
 
@@ -129,10 +181,17 @@ style.textContent = `
   from { transform: translate(-50%, -100%) rotate(0deg); }
   to   { transform: translate(-50%, -100%) rotate(360deg); }
 }
+
+@media (max-width: 900px) {
+  .timer-container {
+    grid-template-columns: 1fr;
+  }
+}
+
 `;
 document.head.appendChild(style);
 
-/* ---------------- STATE ---------------- */
+/* ---------------- Defining Variables---------------- */
 let workMinutes = 25;
 let shortBreakMinutes = 5;
 let longBreakMinutes = 15;
@@ -143,11 +202,11 @@ let breakSeconds = longBreakMinutes * 60;
 let workInterval = null;
 let breakInterval = null;
 
-/* ---------------- RENDER ---------------- */
+/* ---------------- HTML ---------------- */
 export default function timer() {
   return `
 <section class="timer-container">
-
+<div class="timer-set" id="pomodoroSet">
   <h2>Pomodoro Timer</h2>
   <svg id="workAnim" class="tomato-svg" viewBox="0 0 200 200">
     <circle cx="100" cy="110" r="60" fill="#e53935" />
@@ -169,10 +228,10 @@ export default function timer() {
     <input type="number" id="workInput" value="25" min="1">
     <button id="applyWork">Apply Work Time</button>
   </div>
-  <br>
-  <hr>
-  <br>
-
+  
+  
+</div>
+<div class="timer-set" id="breakSet">
   <h2>Break Timer</h2>
   <div class="clock" id="breakAnim"></div>
   <div class="timer" id="breakTimer">15:00</div>
@@ -193,12 +252,13 @@ export default function timer() {
     <input type="number" id="longInput" value="15" min="1">
     <button id="applyLong">Apply Long Break</button>
   </div>
-
+</div>
 </section>
 `;
 }
 
-/* ---------------- INIT ---------------- */
+/* ---------------- JavaScript ---------------- */
+
 export function timerInit() {
   const workTimer = document.getElementById("workTimer");
   const breakTimer = document.getElementById("breakTimer");
@@ -208,7 +268,8 @@ export function timerInit() {
   update(workTimer, workSeconds);
   update(breakTimer, breakSeconds);
 
-  /* ---- APPLY BUTTONS (Set Time Only) ---- */
+  /* ---- Buttons (Set Time Only) ---- */
+  
   document.getElementById("applyWork").onclick = () => {
     workMinutes = +document.getElementById("workInput").value;
     workSeconds = workMinutes * 60;
@@ -230,7 +291,21 @@ export function timerInit() {
     breakAnim.classList.add("visible");
   };
 
-  /* ---- WORK TIMER ---- */
+  document.querySelectorAll(".controls").forEach(controlGroup => {
+  const buttons = controlGroup.querySelectorAll("button");
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      // remove active from all buttons 
+      buttons.forEach(btn => btn.classList.remove("active"));
+
+      // add active to the clicked button
+      button.classList.add("active");
+    });
+  });
+});
+
+  /* ---- Work Timer ---- */
   document.getElementById("workStart").onclick = () => {
     if (workInterval) return;
     workAnim.classList.add("visible", "active");
@@ -255,7 +330,8 @@ export function timerInit() {
     workAnim.classList.remove("active", "visible");
   };
 
-  /* ---- BREAK TIMER ---- */
+  /* ---- Break Timer ---- */
+  
   document.getElementById("breakStart").onclick = () => {
     if (breakInterval) return;
     breakAnim.classList.add("visible", "active");
@@ -280,23 +356,25 @@ export function timerInit() {
     breakAnim.classList.remove("active", "visible");
   };
 
-  /* ---- TIMER END ---- */
+  /* ---- Timer End ---- */
+  
   function stopWork() {
     clearInterval(workInterval);
     workInterval = null;
     workAnim.classList.remove("active", "visible");
-    notify("Now it's time to take a break!");
+    notify("Now it's the time to take a break!");
   }
 
   function stopBreak() {
     clearInterval(breakInterval);
     breakInterval = null;
     breakAnim.classList.remove("active", "visible");
-    notify("Now it's time to work!");
+    notify("Now it's the time to work!");
   }
 }
 
-/* ---------------- UTIL ---------------- */
+/* ---------------- Notifications ---------------- */
+
 function update(el, seconds) {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
