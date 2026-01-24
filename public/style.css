@@ -193,6 +193,10 @@ nav a {
   top: 4px;
 }
 
+.sun svg {
+  color: var(--heading-color);
+}
+
 #view {
   background-color: var(--secondary-bg-color);
   width: 84%;

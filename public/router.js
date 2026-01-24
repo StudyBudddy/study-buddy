@@ -2,12 +2,16 @@ import dashboard, { dashboardInit } from "./views/dashboard.js";
 import todo, { todoInit } from "./views/todo.js";
 import chat, { chatInit } from "./views/chat.js";
 import timer, { timerInit } from "./views/timer.js";
+import login, { loginInit } from "./views/login.js";
+import signup, { signupInit } from "./views/singup.js";
 
 const routes = {
   "/": { title: "Dashboard", render: dashboard, init: dashboardInit },
   "/todo": { title: "Todo List", render: todo, init: todoInit },
   "/ai-chat": { title: "AI Chat", render: chat, init: chatInit },
   "/timer": { title: "Study Timer", render: timer, init: timerInit },
+  "/login": { title: "Login", render: login, init: loginInit },
+  "/signup": { title: "Signup", render: signup, init: signupInit },
 };
 
 const router = async () => {
