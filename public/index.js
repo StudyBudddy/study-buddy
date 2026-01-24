@@ -1,8 +1,15 @@
 const toggle = document.getElementById("themeToggle");
 const root = document.documentElement;
+const logo = document.getElementById("logo");
 
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme) root.setAttribute("data-theme", savedTheme);
+function updateLogo(theme) {
+  logo.src =
+    theme === "light" ? "./images/logo-light.png" : "./images/logo.png";
+}
+
+const savedTheme = localStorage.getItem("theme") || "dark";
+root.setAttribute("data-theme", savedTheme);
+updateLogo(savedTheme);
 
 toggle.addEventListener("click", () => {
   const current = root.getAttribute("data-theme");
@@ -10,4 +17,5 @@ toggle.addEventListener("click", () => {
 
   root.setAttribute("data-theme", next);
   localStorage.setItem("theme", next);
+  updateLogo(next);
 });

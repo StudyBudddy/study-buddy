@@ -32,17 +32,17 @@ export default function login() {
   .input-field {
     background-color: var(--secondary-bg-color);
     color: var(--heading-color);
-    border: none;
+      border: 1px solid transparent;
     padding: 15px;
     border-radius: 15px;
   }
-  .input-field:placeholder {
+  .input-field::placeholder {
     color: var(--text-color);
   }
   input:focus {
     outline: none;
     border-color: var(--primary-color);             
-    box-shadow: 0 0 0 3px rgba(220,247,99,0.25); 
+    box-shadow: 0 0 0 3px rgba(199, 227, 71, 0.25); 
   }
   .submit-btn {
     background-color: var(--primary-color);
