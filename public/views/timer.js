@@ -22,7 +22,7 @@ style.textContent = `
   gap: 1rem;
 }
 
-h2, h3 {
+h1,h3 {
   color: var(--heading-color);
 }
   
@@ -36,14 +36,15 @@ h2, h3 {
 
 .timer {
   font-size: 3.5rem;
-  margin: 1rem 0;
-  color: #f5f242
+  margin: 0.5rem 0;
+  color: var(--text-color);
 }
 
 .controls button, .settings button {
   transition: background-color 0.25s ease, transform 0.2s ease;
-  margin: 0.2rem ;
-  padding: 0.6rem 1rem;
+  font: var(--font--text);
+  margin: 0.2rem 0.4rem ;
+  padding: 0.4rem 1rem;
   cursor: pointer;
   border: 2px solid #f53d37;
   border-radius: 8px;
@@ -57,12 +58,14 @@ h2, h3 {
   }
 
   button.active {
-    background-color: #f5f242;
+    background-color: var(--primary-color);
   }
 
 .settings input { 
   width: 70px;
-  height: 25px;
+  height: 30px;
+  margin-right: 0.4rem;
+  font: var(--font--text);
   border: 2px solid #da5543;
   border-radius: 8px;
   background-color: #fcb7b7;
@@ -94,7 +97,7 @@ h2, h3 {
   animation: tomatoPulse 1.6s ease-in-out infinite;
 }
 
-/* Leaf sway */
+/* Leaf Sway */
 .tomato-svg.active #leaf {
   transform-origin: 100px 55px;
   animation: leafSway 1.4s ease-in-out infinite;
@@ -205,9 +208,10 @@ let breakInterval = null;
 /* ---------------- HTML ---------------- */
 export default function timer() {
   return `
-<section class="timer-container">
-<div class="timer-set" id="pomodoroSet">
-  <h2>Pomodoro Timer</h2>
+  <section class="timer-container">
+
+  <div class="timer-set" id="pomodoroSet">
+  <h1>Pomodoro Timer</h1>
   <svg id="workAnim" class="tomato-svg" viewBox="0 0 200 200">
     <circle cx="100" cy="110" r="60" fill="#e53935" />
     <ellipse cx="75" cy="90" rx="15" ry="25" fill="rgba(255,255,255,0.2)" />
@@ -223,7 +227,7 @@ export default function timer() {
     <button id="workReset">Reset</button>
   </div>
 
-  <h3>Work Time</h3>
+  <h3>Work Time Settings</h3>
   <div class="settings">
     <input type="number" id="workInput" value="25" min="1">
     <button id="applyWork">Apply Work Time</button>
@@ -232,7 +236,7 @@ export default function timer() {
   
 </div>
 <div class="timer-set" id="breakSet">
-  <h2>Break Timer</h2>
+  <h1>Break Timer</h1>
   <div class="clock" id="breakAnim"></div>
   <div class="timer" id="breakTimer">15:00</div>
 
@@ -242,7 +246,7 @@ export default function timer() {
     <button id="breakReset">Reset</button>
   </div>
 
-  <h3>Break Settings</h3>
+  <h3>Break Time Settings</h3>
   <div class="settings">
     <input type="number" id="shortInput" value="5" min="1">
     <button id="applyShort">Apply Short Break</button>

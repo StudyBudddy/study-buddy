@@ -27,7 +27,7 @@
 
 [data-theme="light"] {
   --secondary-color: #a29bfe; /* For elements that needs highlighting */
-  --bg-color: #fff; /* Main background colors for large areas */
+  --bg-color: #f8f0f0; /* Main background colors for large areas */
   --secondary-bg-color: #b29e9e; /* Background color for cards & small background areas */
   --heading-color: #222; /* Color for h1...h6 & texts that needs emphasis */
   --text-color: #a7aab4; /* Color for long texts like paragraphs */
