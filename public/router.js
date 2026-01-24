@@ -4,6 +4,7 @@ import chat, { chatInit } from "./views/chat.js";
 import timer, { timerInit } from "./views/timer.js";
 import login, { loginInit } from "./views/login.js";
 import signup, { signupInit } from "./views/singup.js";
+import music, { musicInit } from "./views/music.js";
 
 const routes = {
   "/": { title: "Dashboard", render: dashboard, init: dashboardInit },
@@ -12,6 +13,7 @@ const routes = {
   "/timer": { title: "Study Timer", render: timer, init: timerInit },
   "/login": { title: "Login", render: login, init: loginInit },
   "/signup": { title: "Signup", render: signup, init: signupInit },
+  "/music": { title: "Music Player", render: music, init: musicInit },
 };
 
 const router = async () => {
