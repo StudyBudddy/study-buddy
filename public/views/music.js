@@ -53,6 +53,7 @@ export default function music() {
 
 
     .music-player{          /*background box black box*/
+    top:100%
     width: 350px;
     height: 550px;
     border-radius: 20px;
@@ -152,7 +153,7 @@ export default function music() {
 .ply{
     display: flex;
     align-items: center;
-    height: 100vh;
+    height: 95vh;
     justify-content: center;
 }
 
