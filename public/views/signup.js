@@ -1,4 +1,42 @@
-export function signupInit() {}
+export function signupInit() {
+  const form = document.getElementById("signup-form");
+  const errorDiv = document.getElementById("signup-error");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errorDiv.textContent = "";
+    errorDiv.style.display = "none";
+
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    try {
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        window.location.href = "/";
+      } else {
+        errorDiv.textContent = data.message;
+        errorDiv.style.display = "block";
+      }
+    } catch (error) {
+      errorDiv.textContent = "An error occurred. Please try again.";
+      errorDiv.style.display = "block";
+    }
+  });
+}
 
 export default function signup() {
   return `
@@ -64,14 +102,15 @@ export default function signup() {
   <div class="signup-wrapper">
     <div class="signup">
     <h2>Welcome Stranger!</h2>
-    <form action="" method="post">
-        <input class="input-field" type="text" placeholder="Enter Your Username" />
-        <input class="input-field" type="email" placeholder="Enter Your Email" />
-        <input class="input-field" type="password" placeholder="Enter Your Password" />
+    <form method="post" id="signup-form">
+        <div id="signup-error"></div>
+        <input class="input-field" type="text" placeholder="Enter Your Username" id="username" />
+        <input class="input-field" type="email" placeholder="Enter Your Email" id="email" />
+        <input class="input-field" type="password" placeholder="Enter Your Password" id="password" />
         <input class="submit-btn" type="submit" value="Signup" />
         <div class="suggest">
           <p>Already have an account?</p>
-          <a href="/login">Login Instead</a>
+          <a href="/login"data-link>Login Instead</a>
         </div>
     </form>
     </div>
