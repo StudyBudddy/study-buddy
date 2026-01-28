@@ -253,8 +253,39 @@ footer {
   justify-content: center;
 }
 
-.footer svg {
+footer svg {
   color: var(--primary-color);
+  fill: currentColor;
+  display: inline-block;
+  vertical-align: middle;
+
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+
+  transform-origin: center;
+  transform-box: fill-box;
+
+  /* 3. A slightly more natural "heartbeat" timing */
+  animation: heartPulse 1.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes heartPulse {
+  0% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.25);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 footer a {
