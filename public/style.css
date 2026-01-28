@@ -254,7 +254,7 @@ footer {
 }
 
 .footer svg {
-  background-color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 footer a {

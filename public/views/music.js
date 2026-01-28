@@ -1,216 +1,184 @@
 export function musicInit() {
+  let playlist = [
+    "images/1.mp3",
+    "images/2.mp3",
+    "images/3.mp3",
+    "images/4.mp3",
+  ];
 
+  let currentTrackIndex = 0;
 
-  let playlist = ['images/1.mp3', 'images/2.mp3', 'images/3.mp3', 'images/4.mp3'];
-let currentTrackIndex = 0;
+  const audioPlayer = document.getElementById("myaudio");
+  const prevButton = document.getElementById("prev-button");
+  const nextButton = document.getElementById("next-button");
+  const playPauseButton = document.getElementById("play-pause-button");
 
-// Get elements
-let audioPlayer = document.getElementById('myaudio');  // Assuming audio element has id="myaudio"
-let backButton = document.getElementById('back-button');
-let nextButton = document.getElementById('next-button');
-let playButton1 =document.getElementById('play-button');
+  const playIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>`;
+  const pauseIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>`;
 
+  function updatePlayPauseIcon(isPlaying) {
+    playPauseButton.innerHTML = isPlaying ? pauseIcon : playIcon;
+  }
 
-// ========== AUDIO FUNCTIONS ==========
-function playTrack(index) {
+  function playTrack(index) {
     if (index >= 0 && index < playlist.length) {
-        audioPlayer.src = playlist[index];  // Use audioPlayer, not myaudio
-        audioPlayer.play();
-        currentTrackIndex = index;
+      audioPlayer.src = playlist[index];
+      audioPlayer.play();
+      currentTrackIndex = index;
+      updatePlayPauseIcon(true);
     }
-}
+  }
 
-function playAudio() {
-    audioPlayer.play();
-}
+  function togglePlayPause() {
+    if (audioPlayer.paused) {
+      if (!audioPlayer.src || audioPlayer.src === window.location.href) {
+        playTrack(currentTrackIndex);
+      } else {
+        audioPlayer.play();
+        updatePlayPauseIcon(true);
+      }
+    } else {
+      audioPlayer.pause();
+      updatePlayPauseIcon(false);
+    }
+  }
 
-function pauseAudio() {
-    audioPlayer.pause();
-}
-
-
-function playNextTrack() {
+  function playNextTrack() {
     const nextIndex = (currentTrackIndex + 1) % playlist.length;
     playTrack(nextIndex);
-}
+  }
 
-// Audio event listeners
-audioPlayer.addEventListener('ended', playNextTrack);
-nextButton.addEventListener('click', playNextTrack);
-backButton.addEventListener('click',pauseAudio);
-playButton1.addEventListener('click',playAudio);
+  function playPrevTrack() {
+    const prevIndex =
+      (currentTrackIndex - 1 + playlist.length) % playlist.length;
+    playTrack(prevIndex);
+  }
 
+  audioPlayer.addEventListener("ended", playNextTrack);
+  nextButton.addEventListener("click", playNextTrack);
+  prevButton.addEventListener("click", playPrevTrack);
+  playPauseButton.addEventListener("click", togglePlayPause);
 
+  updatePlayPauseIcon(false);
 }
 
 export default function music() {
   return `
-  
-
-  <style>
-
-  
-
-
-    .music-player{          /*background box black box*/
-    top:100%
-    width: 350px;
-    height: 550px;
-    border-radius: 20px;
-    border: 5px solid #ffb109;
-    box-shadow: 0px 0px 40px #000000 ; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-
+    <style>
+      .music-player {
+      border-radius: 30px;
+      display: flex;
+      flex-direction: column;    
+      justify-content: center;
+      align-items: center;        
+      padding: 40px;
+      height: 600px;
+      background-color: color-mix(in srgb, var(--primary-color), transparent 90%);
+      width: 840px;
+      color: red;
+      position: relative;
 }
 
-/*artist and song name*/
+      .music {
+        position: relative;
+        text-transform: capitalize;
+        color: #ffffff;
+        left: 70px;
+        top: 90px;
+        font-family: var(--font-primary);
+        font-size: 100px;
+      }
 
-.music{ 
-  position:relative;
-  text-transform: capitalize;
-  color: #ffffff;
-  left:70px;
-  top:90px;
-  font-family: var(--font-primary);
-  font-size: 100px;
-  }
+      .artist-name {
+        position: relative;
+        text-transform: capitalize;
+        color: #ffffff;
+        left: 50px;
+        top: 120px;
+        text-align: justify;
+      }
 
-
-.artist-name{            /*artist and song name*/
-    position:relative;
-    text-transform: capitalize;
-    color: #ffffff;
-    left:50px;
-    top:120px;
-    position:relative;
-    text-align: justify;
-  }
-
-
-.play-but{
-    position:relative;
-    width: 60px;
-    height: 40px;
-    border-radius: 10%;
-    background: #9fe8fa;
-    cursor: pointer;
-    background-color: #dcf763; 
-    border-radius: 10%;
-    margin-right: 5px;
-    }
-
-
-    .backBut{
-      position:relative;
-      width: 60px;
-      height: 40px;
-      border-radius: 10%;
-      background: #9fe8fa;
-      background-color: #dcf763; 
-
-    }
-
-  .nextBut{
-    position: relative;
-    width: 120px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #dcf763;
-    margin-top: 20px;
-    font-family: var(--font-primary);
-    
-    
-    }
-
-   
-
-    
- /*wall paper*/
-
-.pict{
-    height: 540px;
-    position: fixed;
-    border-radius: 20px;
-    border: 3px solid #000000;
-    
-    
+      .control-button {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        border-radius: 15px;
+        background-color: var(--primary-color);
+        cursor: pointer;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+      }
+      .control-button:hover {
+        background-color: var(--bg-color);
+      }
+      .control-button svg {
+        width: 24px;
+        height: 24px;
+        stroke: var(--bg-color);
+      }
+      .control-button:hover svg {
+        width: 24px;
+        height: 24px;
+        stroke: var(--primary-color);
+      }
+     .pict {
+       max-width: 100%;
+        height: auto;
+        border-radius: 20px;
+        margin-bottom: 24px;        
+        position: relative;       
 }
 
+      .ply {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        justify-content: center;
+      }
 
+      .button-container {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
 
- .nextBut:hover{background-color: #ffffff;}
- .backBut:hover{background-color: #ffffff;}
- .play-but:hover{background-color: #ffffff;}
-
-
-. display
-  {}
-
-
-.ply{
-    display: flex;
-    align-items: center;
-    height: 95vh;
-    justify-content: center;
-}
-
-.button{
-  position: relative;
-  top: 200px;
-  left:-100px;
-  
-  }
-  
- .text{
-    
- }
-
-  </style>
-
- 
-  
-  
-  <div class="ply">
-       
-   
-        
-    
-      
-
-       <div class="music-player">
-
-          <img src="images/lofi1.jpg" id="pic" class="pict">
-
-        <div class="text">
-          <h1 class="music">LOFi</h1>
-          <p class="artist-name"></p>
+    <div class="ply">
+      <div class="music-player">
+        <img src="images/lofi.jpg" id="pic" class="pict" />
+        <div class="button-container">
+          <button type="button" class="control-button" id="prev-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="19 20 9 12 19 4 19 20"></polygon>
+              <line x1="5" y1="19" x2="5" y2="5"></line>
+            </svg>
+          </button>
+          
+          <button type="button" class="control-button" id="play-pause-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </button>
+          
+          <button type="button" class="control-button" id="next-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 4 15 12 5 20 5 4"></polygon>
+              <line x1="19" y1="5" x2="19" y2="19"></line>
+            </svg>
+          </button>
         </div>
-
-
-        <div class="button">
-            
-            <button onclick="playAudio()" type="button" class="play-but" id="play-button">play</button>
-            <button onclick="pauseAudio()" type="button" class="backBut" id="back-button">pause</button><br>
-            <button class="nextBut" id="next-button">next</button>
-        </div>
-
 
         <audio id="myaudio">
-          <source src="sandawathiye.mp3" type="audio/mp3">
-          <source src="images/1.mp3" type="audio/mp3">
-          <source src="images/2.mp3" type="audio/mp3">
-          <source src="images/3.mp3" type="audio/mp3">
-          <source src="images/4.mp3" type="audio/mp3">
+          <source src="images/1.mp3" type="audio/mp3" />
+          <source src="images/2.mp3" type="audio/mp3" />
+          <source src="images/3.mp3" type="audio/mp3" />
+          <source src="images/4.mp3" type="audio/mp3" />
         </audio>
-
-        <audio src="images/1.mp3" id="myaudio></audio>
-        
-        
-    
-
-
-  </div>`;
+      </div>
+    </div>
+    `;
 }

@@ -9,7 +9,6 @@ export function timerInit() {
   justify-content: center;
   align-items: start;
   padding: 2rem 4rem;
-  background-color: var(--bg-color);
 }
 
 .timer-set {
