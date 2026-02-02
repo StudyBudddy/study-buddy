@@ -73,7 +73,7 @@ export default function music() {
       align-items: center;        
       padding: 40px;
       height: 600px;
-      background-color: color-mix(in srgb, var(--primary-color), transparent 90%);
+      background-color: var(--bg-color);
       width: 840px;
       color: red;
       position: relative;
