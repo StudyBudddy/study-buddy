@@ -26,7 +26,7 @@
 }
 
 [data-theme="light"] {
-  --primary-color: #b5d936;
+  --primary-color: #b5d742;
   --secondary-color: #a29bfe; /* For elements that needs highlighting */
   --bg-color: #fefefe; /* Main background colors for large areas */
   --secondary-bg-color: #e9e9e9; /* Background color for cards & small background areas */

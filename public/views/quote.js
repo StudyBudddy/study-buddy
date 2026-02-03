@@ -1,87 +1,86 @@
 export function quoteInit() {
-      const quotes = [
-        {
-            quote: `"Whatever you are, be a good one."`,
-            author: "- Abraham Lincoln",
-            imagePath: "images/Abraham_Lincoln.jpg"
-        },
-        {
-            quote: `
+  const quotes = [
+    {
+      quote: `"Whatever you are, be a good one."`,
+      author: "- Abraham Lincoln",
+      imagePath: "images/Abraham_Lincoln.jpg",
+    },
+    {
+      quote: `
                 "Let's go invent
                 tomorrow rather than
                 worrying about what happened yesterday."`,
-            author: "- Steve Jobs",
-            imagePath: "images/steavejobs.jpeg"
-        },
-        {
-            quote: `"In the middle of difficulty lies opportunity."`,
-            author: "- Albert Einstein",
-            imagePath: "images/Albert_Einstein_Head_cleaned.jpg"
-        },
-        {
-            quote: `
+      author: "- Steve Jobs",
+      imagePath: "images/steavejobs.jpeg",
+    },
+    {
+      quote: `"In the middle of difficulty lies opportunity."`,
+      author: "- Albert Einstein",
+      imagePath: "images/Albert_Einstein_Head_cleaned.jpg",
+    },
+    {
+      quote: `
                 "The greatest enemy of knowledge is not ignorance,
                 it is the illusion of knowledge."`,
-            author: "- Stephen Hawking",
-            imagePath: "images/Stephen_Hawking.jpg"
-        },
-        {
-            quote: `"A winner is a dreamer who never gives up."`,
-            author: "- Nelson Mandela",
-            imagePath: "images/Nelson-Mandela.jpg"
-        },
-        {
-            quote: `"I had rather be on my farm than be emperor of the world."`,
-            author: "- George Washington",
-            imagePath: "images/george.jpeg"
-        },
-        {
-            quote: `
+      author: "- Stephen Hawking",
+      imagePath: "images/Stephen_Hawking.jpg",
+    },
+    {
+      quote: `"A winner is a dreamer who never gives up."`,
+      author: "- Nelson Mandela",
+      imagePath: "images/Nelson-Mandela.jpg",
+    },
+    {
+      quote: `"I had rather be on my farm than be emperor of the world."`,
+      author: "- George Washington",
+      imagePath: "images/george.jpeg",
+    },
+    {
+      quote: `
                 "The Earth does not belong to us: we
                 belong to the Earth."`,
-            author: "- Chief Seattle",
-            imagePath: "images/siyatal.jpeg"
-        },
-        {
-            quote: `"Family pride was a mask that had covered her egoism."`,
-            author: "- Martin Wickramasinghe",
-            imagePath: "images/martin.jpeg"
-        }
-    ];
+      author: "- Chief Seattle",
+      imagePath: "images/siyatal.jpeg",
+    },
+    {
+      quote: `"Family pride was a mask that had covered her egoism."`,
+      author: "- Martin Wickramasinghe",
+      imagePath: "images/martin.jpeg",
+    },
+  ];
 
-    const quoteText = document.getElementById("quote-text");
-    const authorName = document.getElementById("author-name");
-    const authorImage = document.getElementById("author-image");
-    const nextBtn = document.getElementById("next-btn");
+  const quoteText = document.getElementById("quote-text");
+  const authorName = document.getElementById("author-name");
+  const authorImage = document.getElementById("author-image");
+  const nextBtn = document.getElementById("next-btn");
 
-    let currentIndex = 0;
+  let currentIndex = 0;
 
-    function updateQuote() {
+  function updateQuote() {
+    quoteText.classList.remove("fade");
+    authorName.classList.remove("fade");
+    authorImage.classList.remove("fade");
 
-        quoteText.classList.remove("fade");
-        authorName.classList.remove("fade");
-        authorImage.classList.remove("fade");
+    void quoteText.offsetWidth;
 
-        void quoteText.offsetWidth;
+    const currentQuote = quotes[currentIndex];
 
-        const currentQuote = quotes[currentIndex];
+    quoteText.textContent = currentQuote.quote;
+    authorName.textContent = currentQuote.author;
+    authorImage.style.backgroundImage = `url('${currentQuote.imagePath}')`;
 
-        quoteText.textContent = currentQuote.quote;
-        authorName.textContent = currentQuote.author;
-        authorImage.style.backgroundImage = `url('${currentQuote.imagePath}')`;
+    quoteText.classList.add("fade");
+    authorName.classList.add("fade");
+    authorImage.classList.add("fade");
+  }
 
-        quoteText.classList.add("fade");
-        authorName.classList.add("fade");
-        authorImage.classList.add("fade");
-    }
-
-    nextBtn.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % quotes.length;
-        updateQuote();
-    });
-
-    currentIndex = Math.floor(Math.random() * quotes.length);
+  nextBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % quotes.length;
     updateQuote();
+  });
+
+  currentIndex = Math.floor(Math.random() * quotes.length);
+  updateQuote();
 }
 
 export default function quote() {
@@ -90,13 +89,10 @@ export default function quote() {
 
   .outer-wrapper{
       display: flex;
-      width: 60%;
-      height: 60%;
       justify-content: space-between;
   }
 
   .quote-wrapper{
-      width: 50%;
       color: #fbfbfb;
       display: flex;
       flex-direction: column;

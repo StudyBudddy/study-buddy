@@ -2,9 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
-import { GoogleGenAI } from "@google/genai"; // ✅ NEW IMPORT
+import { GoogleGenAI } from "@google/genai";
 
 import authRoutes from "./routes/auth.js";
+import todoRoutes from "./routes/todos.js";
 
 dotenv.config({
   path: `.env.${process.env.NODE_ENV || "development"}`,
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/auth", authRoutes);
+app.use("/api/todos", todoRoutes);
 
 app.use(express.static(path.join(__dirname, "public")));
 
