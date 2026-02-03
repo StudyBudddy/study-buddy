@@ -3,7 +3,7 @@ export function quoteInit() {
     {
       quote: `"Whatever you are, be a good one."`,
       author: "- Abraham Lincoln",
-      imagePath: "images/Abraham_Lincoln.jpg",
+      imagePath: "../images/Abraham_Lincoln.jpg",
     },
     {
       quote: `
@@ -11,41 +11,41 @@ export function quoteInit() {
                 tomorrow rather than
                 worrying about what happened yesterday."`,
       author: "- Steve Jobs",
-      imagePath: "images/steavejobs.jpeg",
+      imagePath: "../images/steavejobs.jpeg",
     },
     {
       quote: `"In the middle of difficulty lies opportunity."`,
       author: "- Albert Einstein",
-      imagePath: "images/Albert_Einstein_Head_cleaned.jpg",
+      imagePath: "../images/Albert_Einstein_Head_cleaned.jpg",
     },
     {
       quote: `
                 "The greatest enemy of knowledge is not ignorance,
                 it is the illusion of knowledge."`,
       author: "- Stephen Hawking",
-      imagePath: "images/Stephen_Hawking.jpg",
+      imagePath: "../images/Stephen_Hawking.jpg",
     },
     {
       quote: `"A winner is a dreamer who never gives up."`,
       author: "- Nelson Mandela",
-      imagePath: "images/Nelson-Mandela.jpg",
+      imagePath: "../images/Nelson-Mandela.jpg",
     },
     {
       quote: `"I had rather be on my farm than be emperor of the world."`,
       author: "- George Washington",
-      imagePath: "images/george.jpeg",
+      imagePath: "../images/george.jpeg",
     },
     {
       quote: `
                 "The Earth does not belong to us: we
                 belong to the Earth."`,
       author: "- Chief Seattle",
-      imagePath: "images/siyatal.jpeg",
+      imagePath: "../images/siyatal.jpeg",
     },
     {
       quote: `"Family pride was a mask that had covered her egoism."`,
       author: "- Martin Wickramasinghe",
-      imagePath: "images/martin.jpeg",
+      imagePath: "../images/martin.jpeg",
     },
   ];
 
@@ -101,7 +101,6 @@ export default function quote() {
 
   .quote-wrapper p{
     font-size: 36px;
-    font-family: Inter, sans-serif;
     font-weight: 500;
   }
 
@@ -128,8 +127,8 @@ export default function quote() {
   }
 
   .image{
-      height: 100%;
-      width: 100%;
+      height: auto;
+      width: 50px;
       background-position: center;
       background-size: cover;
       border-radius: 20px;

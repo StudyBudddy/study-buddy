@@ -18,16 +18,35 @@ export default function chat() {
       border-radius: 10px;
       background-image: url('/images/Screenshot 2026-01-29 004833.png');
       background-repeat: no-repeat;
-       background-attachment: fixed;
+      background-attachment: fixed;
       background-size: 100% 100%;
-      color:var(--text-color);
-      display:flex;
-      flex-direction:column;
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      position: relative; 
+      padding-bottom: 80px;
+    }
 
+    .chat-input {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;      
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+    }
+
+    /* Ensure the input width looks good inside the absolute container */
+    .chat-input input {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 60%; /* Adjusted for better visibility */
     }
 
     .user-msg {
-      background: #b6ff4d;
+      background: var(--primary-color);
       color: #000;
       padding: 8px 12px;
       border-radius: 12px;
@@ -64,22 +83,31 @@ export default function chat() {
       border-radius: 8px;
       border: 1px solid #ccc;
       width:50%;
-      
+      background-color: var(--bg-color);
+      color: var(--heading-color);
+      border: 1px solid transparent;
+      padding: 15px;
+      border-radius: 15px;
     }
-
+    .chat-input input:focus {
+    outline: none;
+    border-color: var(--primary-color);             
+    box-shadow: 0 0 0 3px rgba(199, 227, 71, 0.25); 
+  }
     .chat-input button {
       padding: 10px 20px;
       border: none;
       border-radius: 8px;
-      background: #b6ff4d;
+      background: var(--primary-color);
       cursor: pointer;
     }
 
     .head{
-      color:var(--text-color); 
+      color:var(--heading-color); 
       font-family:'poppins';
       font-size: 35px;
       padding:10px;
+      text-align: center;
     }
 
   </style>
@@ -91,14 +119,12 @@ export default function chat() {
    <div class="chat-container">
       <div id="chat-box" class="chat-box">
         <div class ="bot-msg">👋 Hi! I'm your StudyBuddy AI🎓✨. <br>Ask me anything..</div>
-      </div>
-
-      <div class="chat-input">
+        <div class="chat-input">
        <input type="text" id="userInput" placeholder="Type your message..." />
         <button id="sendBtn"><i class="fa fa-send"></i></button>
       </div>
-    </div>`
+      </div>
+
+      
+    </div>`;
 }
-
-
-
