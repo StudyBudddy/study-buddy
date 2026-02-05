@@ -185,6 +185,13 @@ a.active .nav-item svg {
   border: none;
   width: 160px;
   text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.account-btn-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px
+    color-mix(in srgb, var(--primary-color), transparent 60%);
 }
 
 .mode-toggle {

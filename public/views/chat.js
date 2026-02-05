@@ -37,12 +37,12 @@ export default function chat() {
       left: 0;
     }
 
-    /* Ensure the input width looks good inside the absolute container */
+    
     .chat-input input {
       padding: 12px;
       border-radius: 8px;
       border: 1px solid #ccc;
-      width: 60%; /* Adjusted for better visibility */
+      width: 60%; 
     }
 
     .user-msg {
@@ -104,8 +104,8 @@ export default function chat() {
 
     .head{
       color:var(--heading-color); 
-      font-family:'poppins';
-      font-size: 35px;
+        font-size: 32px;
+        font-weight: 600;
       padding:10px;
       text-align: center;
     }
@@ -118,7 +118,7 @@ export default function chat() {
   </div>
    <div class="chat-container">
       <div id="chat-box" class="chat-box">
-        <div class ="bot-msg">👋 Hi! I'm your StudyBuddy AI...  <br>Ask me anything 🎓✨</div>
+        <div class ="bot-msg">👋 Hi! This is StudyBuddy AI...  <br>Ask me anything ✨</div>
         <div class="chat-input">
        <input type="text" id="userInput" placeholder="Type your message..." />
         <button id="sendBtn"><i class="fa fa-send"></i></button>

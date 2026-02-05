@@ -112,7 +112,7 @@ export default function music() {
         transition: background-color 0.3s ease;
       }
       .control-button:hover {
-        background-color: var(--bg-color);
+        background-color: var(--secondary-bg-color);
       }
       .control-button svg {
         width: 24px;
