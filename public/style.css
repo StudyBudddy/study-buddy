@@ -194,6 +194,10 @@ a.active .nav-item svg {
     color-mix(in srgb, var(--primary-color), transparent 60%);
 }
 
+#user-profile {
+  width: 230px;
+}
+
 .mode-toggle {
   width: 32px;
   background-color: var(--secondary-bg-color);
