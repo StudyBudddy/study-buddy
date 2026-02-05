@@ -124,7 +124,7 @@ export default function dashboard() {
           </div>
         </div>
         <div class="btn-row">
-          <a href="/todo-list" class="btn-feature" data-link>View Todo List</a>
+          <a href="/todo" class="btn-feature" data-link>View Todo List</a>
         </div>
       </div>
       <div class="feature-item">
