@@ -256,6 +256,11 @@ a.active .nav-item svg {
   height: 90%;
   margin: 20px 30px 20px 0;
   border-radius: 20px;
+  background-image: url("./images/eclipse1.svg");
+
+  background-position: top left;
+
+  background-repeat: repeat-y;
 }
 
 footer {
