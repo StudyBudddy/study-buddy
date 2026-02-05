@@ -85,6 +85,23 @@ export default function dashboard() {
     border: solid 2px var(--primary-color);
     text-decoration: none;
   }
+  .btn-feature:hover {
+  background: var(--primary-color);
+  color: var(--bg-color);
+  transform: translateY(-2px);
+}
+
+  @keyframes fadeEffect {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   </style>
   <div class="dash-full">
      <div id="welcome">

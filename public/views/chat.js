@@ -118,7 +118,7 @@ export default function chat() {
   </div>
    <div class="chat-container">
       <div id="chat-box" class="chat-box">
-        <div class ="bot-msg">👋 Hi! I'm your StudyBuddy AI🎓✨. <br>Ask me anything..</div>
+        <div class ="bot-msg">👋 Hi! I'm your StudyBuddy AI...  <br>Ask me anything 🎓✨</div>
         <div class="chat-input">
        <input type="text" id="userInput" placeholder="Type your message..." />
         <button id="sendBtn"><i class="fa fa-send"></i></button>

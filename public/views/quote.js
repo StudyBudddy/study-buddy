@@ -6,10 +6,7 @@ export function quoteInit() {
       imagePath: "../images/Abraham_Lincoln.jpg",
     },
     {
-      quote: `
-                "Let's go invent
-                tomorrow rather than
-                worrying about what happened yesterday."`,
+      quote: `"Let's go invent tomorrow rather than worrying about what happened yesterday."`,
       author: "- Steve Jobs",
       imagePath: "../images/steavejobs.jpeg",
     },
@@ -19,9 +16,7 @@ export function quoteInit() {
       imagePath: "../images/Albert_Einstein_Head_cleaned.jpg",
     },
     {
-      quote: `
-                "The greatest enemy of knowledge is not ignorance,
-                it is the illusion of knowledge."`,
+      quote: `"The greatest enemy of knowledge is not ignorance, it is the illusion of knowledge."`,
       author: "- Stephen Hawking",
       imagePath: "../images/Stephen_Hawking.jpg",
     },
@@ -36,9 +31,7 @@ export function quoteInit() {
       imagePath: "../images/george.jpeg",
     },
     {
-      quote: `
-                "The Earth does not belong to us: we
-                belong to the Earth."`,
+      quote: `"The Earth does not belong to us: we belong to the Earth."`,
       author: "- Chief Seattle",
       imagePath: "../images/siyatal.jpeg",
     },
@@ -86,87 +79,131 @@ export function quoteInit() {
 export default function quote() {
   return `
   <style>
-
-  .outer-wrapper{
-      display: flex;
-      justify-content: space-between;
+  .quote-body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
-  .quote-wrapper{
-      color: #fbfbfb;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+  .outer-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    height: 100%;
   }
 
-  .quote-wrapper p{
-    font-size: 36px;
-    font-weight: 500;
+  .quote-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
   }
 
-  .quote-wrapper h4 {
+  .quote-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  #quote-text {
     font-size: 22px;
-    font-family: Inter, sans-serif;
-    font-weight: 700;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--heading-color);
+    margin: 0;
   }
 
-  #next-btn{
-      margin-top:20px;
-      width: 200px;
-      padding:10px 18px;
-      border:none;
-      border-radius:8px;
-      background:#2b2d33;
-      color:white;
-      cursor:pointer;
+  #author-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0;
   }
 
-  .image-wrapper{
-      width: 40%;
-      height: 100%;
+  #next-btn {
+    padding: 10px 30px;
+    border: solid 2px var(--primary-color);
+    border-radius: 12px;
+    background: transparent;
+    color: var(--primary-color);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: var(--font-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: fit-content;
   }
 
-  .image{
-      height: auto;
-      width: 50px;
-      background-position: center;
-      background-size: cover;
-      border-radius: 20px;
+  #next-btn:hover {
+    background: var(--primary-color);
+    color: var(--bg-color);
+    transform: translateY(-2px);
   }
 
+  #next-btn:active {
+    transform: translateY(0);
+  }
+
+ .image-wrapper {
+  width: 200px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+#author-image {
+  width: 100px;
+  height: 100px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  border: 3px solid var(--secondary-bg-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#author-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin: 0;
+  text-align: center;
+  white-space: nowrap;
+}
 
   .fade {
-      animation: fadeEffect 0.4s ease-in-out;
+    animation: fadeEffect 0.5s ease-in-out;
   }
 
   @keyframes fadeEffect {
-      from {
-          opacity: 0;
-          transform: translateY(10px);
-      }
-      to {
-          opacity: 1;
-          transform: translateY(0);
-      }
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-
   </style>
 
   <div class="quote-body">
     <div class="outer-wrapper">
-
-        <div class="quote-wrapper">
-            <div>
-                <p id="quote-text"></p>
-                <h4 id="author-name"></h4>
-            </div>
-            <button id="next-btn">Next Quote</button>
+      <div class="quote-wrapper">
+        <div class="quote-content">
+          <p id="quote-text"></p>
         </div>
-
-        <div class="image-wrapper">
-            <div class="image" id="author-image"></div>
-        </div>
-
+        <button id="next-btn">Next Quote →</button>
+      </div>
+      <div class="image-wrapper">
+        <div id="author-image"></div>
+        <h4 id="author-name"></h4>
+      </div>
     </div>
-</div>`;
+  </div>`;
 }
