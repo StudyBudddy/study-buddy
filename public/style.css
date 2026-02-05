@@ -170,7 +170,7 @@ a.active .nav-item svg {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .account-btn-login {
@@ -272,8 +272,6 @@ footer svg {
 
   transform-origin: center;
   transform-box: fill-box;
-
-  /* 3. A slightly more natural "heartbeat" timing */
   animation: heartPulse 1.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
 }
 

@@ -115,14 +115,15 @@
           </a>
         </nav>
         <div class="actions">
-          <div class="account-btn hidden">
+          <div class="account-btn hidden" id="user-profile">
             <img src="./images/profile.jpg" alt="Profile" />
             <div>
-              <p class="user">Alex Coal</p>
-              <p class="email">alex@gmail.com</p>
+              <p class="user" id="user-name">User Name</p>
+              <p class="email" id="user-email">email@example.com</p>
             </div>
           </div>
-          <a href="/login" class="account-btn-login">Login</a>
+
+          <a href="/login" class="account-btn-login" id="login-btn">Login</a>
 
           <div class="mode-toggle" id="themeToggle" title="Toggle Theme">
             <span class="icon moon"
